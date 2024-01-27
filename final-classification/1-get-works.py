@@ -40,7 +40,7 @@ df = pd.read_sql_query(query, conn)
 
 conn.close()
 
-new_db_path = 'works-with-abstract-title.db'
+new_db_path = 'works-with-abstract-title-topics.db'
 
 new_conn = sqlite3.connect(new_db_path)
 
