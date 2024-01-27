@@ -43,19 +43,19 @@ The way to run files under folder 'initial-classifications', 'initial-classifica
 ```
 cd final-classification
 ```
-2. Assuming that you have the data set ready, run the files in order. For step 1, you have two options so please read carefully and follow the instructions accordingly.
+2. Assuming that you have the data set ready, run the files in order. For step 1, you have two options so please read carefully and follow the instructions accordingly (Be careful since specific names of files and tables differ for code in 'initial-classifications' folder).
 
-You can populate and save the data set as .csv file using A3k with SQL queries in files that start with 1. 
+You can populate and save the data set as .csv file using A3k with SQL queries in files that start with 1. Then, convert .csv file to 'works-with-abstract-title-topics.db' file with 'expanded_abstract' as the table name. 
 
 ```
 a3k query crossref 'April 2022 Public Data File from Crossref' \
   --query 'add SQL query' \
-  --output stratified-samples.csv \
+  --output crossref_data.csv \
   --output-encoding use utf-8-sig
 ```
 or
 
-Run the .py file in the case of memory shortage while converting .csv to .db . This requires 'April 2022 Public Data File from Crossref' to be saved in .db file. In this project, it is named as crossref.db.
+Run the .py file in the case of memory shortage while converting .csv to .db. This requires 'April 2022 Public Data File from Crossref' to be saved in .db file. 
 
 ```
 python 1-get-works.py
@@ -63,11 +63,12 @@ python 1-get-works.py
 
 The rest of the steps can be ran by using following command format:
 ```
-python 2.0-clean-abstract.py
+python 1.1-stratify-works.py
 ```
 
 _Note: In step 3, for the first time running do not modify anything and run the code. This runs OpenAI Embeddings and the embeddings will be saved in a .csv file. For second or more runs, please comment out the OpenAI Embedding part (e.g. line 12-33 in 3-openai-xgboost-title.py) and uncomment the lines that read the saved embeddings (e.g. line 35-37 in 3-opani-xgboost-title.py) in order to avoid unnecessary cost._
 
-_Not intermediate output files are included in the repository_
+_Intermediate output files, like .csv and .db files, are included in the repository due to size limitation._
+
 ## Acknowledgement
 I would like to give special thanks to Professor Diomidis Spinellis and Professor Georgios Gousios for the guidance throughout the project.
